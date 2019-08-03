@@ -9,8 +9,10 @@ public class Email {
     private String password;
     private int defaultPasswordLength = 8;
     private String department;
-    private int mailboxCapacity;
+    private String email;
+    private int mailboxCapacity = 500;
     private String alternativeEmail;
+    private String companySuffix = "pwc.com";
 
     // Constructor to receive the first name and last name
     public Email (String firstName, String lastName){
@@ -18,13 +20,17 @@ public class Email {
         this.lastName = lastName;
         System.out.println("EMAIL CREATED: " + this.firstName + " " + this.lastName);
 
-        //Call a method asking for the department = return the department
+        // Call a method asking for the department = return the department
         this.department = setDepartment();
         System.out.println("Department: " + this.department);
 
-        //Call a method that returns a random password
+        // Call a method that returns a random password
         this.password = randomPassword(defaultPasswordLength);
         System.out.println("Your password is: " + this.password);
+
+        // Combine elements to generate email
+        email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department + "." + companySuffix;
+        System.out.println("Your mail is: " + email);
     }
 
     // Ask for the department
@@ -41,7 +47,7 @@ public class Email {
         if (depChoice == 1){ return "sales"; }
         else if (depChoice == 2){return "dev";}
         else if (depChoice == 3){return "acc";}
-        else {return "";}
+        else {return "adm";}
     }
 
     // Generate a random password
@@ -57,13 +63,38 @@ public class Email {
     }
 
     // Set the mailbox capacity
-
+    public void setMailboxCapacity(int capacity){
+        this.mailboxCapacity = mailboxCapacity;
+    }
 
     // Set the alternative email
-
+    public void setAlternativeEmail(String alternativeEmail){
+        this.alternativeEmail = alternativeEmail;
+    }
 
     // Change the password
+    public void changePassword (String password){
+        this.password = password;
+    }
 
+    // Getting mailbox capacity
+    public int getMailboxCapacity(){
+        return mailboxCapacity;
+    }
 
+    // Getting alternative email
+    public String getAlternativeEmail(){
+        return alternativeEmail;
+    }
 
+    // Getting password
+    public String getPassword(){
+        return password;
+    }
+
+    public String showInfo(){
+        return "DISPLAY NAME: " + firstName + " " + lastName +
+                "\n COMPANY EMAIL: " + email +
+                "\n MAILBOX CAPACITY: " + mailboxCapacity + "mb";
+    }
 }
